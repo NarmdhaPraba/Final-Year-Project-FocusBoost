@@ -1,0 +1,99 @@
+{% extends 'PlaceHolder.html' %}
+{% block content %}
+
+<style>
+  #Insection {
+    background-image: url('/static/Assets/peakpx.jpg');
+    background-size: cover;
+    background-position: center;
+
+  }
+
+  .contact_form-container {
+    background: rgba(255, 255, 255, 0.8); /* Optional: adds a white background with some transparency */
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .contact_form-container input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .contact_form-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .contact_form-container button:hover {
+    background-color: #555;
+  }
+</style>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<section id="Insection" class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Your Video</h2>
+
+
+      </div>
+<center>
+            {% if video_file %}
+          <div class="video-container">
+            <video width="600" controls>
+              <source src="{{ url_for('static', filename='uploads/' ~ video_file) }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {% endif %}
+</center>
+      <div class="box">
+<!--                                <p>{{ actual_text }}</p>-->
+        <div class="detail-box">
+          <div class="heading_container">
+
+         <form action="{{ url_for('compare') }}" method="post">
+    <input type="hidden" name="actual_text" value="{{ actual_text }}">
+    <div class="contact_form-container">
+        <div class="mt-5">
+            <button type="submit">
+                <i class="fas fa-microphone"></i> Click here and say what you listen
+            </button>
+        </div>
+    </div>
+</form>
+
+
+          </div>
+
+
+          {% if recognized_text %}
+<!--            <h2>Recognized Text from Mic:</h2>-->
+<!--            <p>{{ recognized_text }}</p>-->
+
+<center>
+            <h2>Percentage Correctness:</h2>
+            <p>{{ percentage_correct }}%</p>
+          {% endif %}
+
+  <div class="mt-5">
+          <a href="">Back</a>
+              </div>
+    </center>
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock %}

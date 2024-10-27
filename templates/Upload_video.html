@@ -1,0 +1,71 @@
+{% extends 'PlaceHolder.html' %}
+{% block content %}
+
+
+<style>
+  #Insection {
+    background-image: url('/static/Assets/peakpx.jpg');
+    background-size: cover;
+    background-position: center;
+
+  }
+
+  .contact_form-container {
+    background: rgba(255, 255, 255, 0.8); /* Optional: adds a white background with some transparency */
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .contact_form-container input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .contact_form-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .contact_form-container button:hover {
+    background-color: #555;
+  }
+</style>
+
+
+<section id="Insection" class="contact_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        <span>Upload Video File</span>
+      </h2>
+    </div>
+    <div class="layout_padding2-top">
+      <div class="row">
+        <div class="col-md-12">
+          <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <div class="contact_form-container">
+              <div>
+                <div>
+                  <input type="file" name="video_file" accept="video/*">
+                </div>
+                <div class="mt-5">
+                  <button type="submit">Upload and Convert</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
